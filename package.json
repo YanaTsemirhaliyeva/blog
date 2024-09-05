@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://YanatseTirhaliyeva.github.io/blog-test",
+  "homepage": "https://YanaTsemirhaliyeva.github.io/blog-test",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
