@@ -13,7 +13,7 @@ export default function Header() {
       <div className={`${container.container} ${styles['header__flex']}`}>
         <Socials />
         <div>
-          {location.pathname !== AppRoute.Index &&
+          {location.pathname === AppRoute.Blog &&
             <BtnTransparent text='Create new post'/>
           }
         </div>
