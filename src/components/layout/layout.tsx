@@ -14,7 +14,7 @@ type LayoutProps = {
 
 function Layout({pageTitle, children}: LayoutProps): JSX.Element {
   const location = useLocation();
-  const isNeedHeader = location.pathname === AppRoute.Index || AppRoute.Blog
+  const isNeedHeader = location.pathname === AppRoute.Index || location.pathname === AppRoute.Blog
 
   return (
     <div className={styles.wrapper}>
