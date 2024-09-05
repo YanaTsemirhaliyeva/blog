@@ -4,6 +4,8 @@ import { Toaster } from 'react-hot-toast'
 import styles from './layout.module.scss'
 import Footer from '../footer/footer';
 import Header from '../header/header';
+import { useLocation } from 'react-router-dom';
+import { AppRoute } from '../../const';
 
 type LayoutProps = {
   pageTitle?: string;
@@ -11,12 +13,16 @@ type LayoutProps = {
 }
 
 function Layout({pageTitle, children}: LayoutProps): JSX.Element {
+  const location = useLocation();
+  const isNeedHeader = location.pathname === AppRoute.Index || AppRoute.Blog
+
   return (
     <div className={styles.wrapper}>
       <Helmet>
         <title>{pageTitle ? `${pageTitle}` : ''} &#8211; BLOG</title>
       </Helmet>
-     <Header />
+      {isNeedHeader && <Header />}
+      {!isNeedHeader && <div className={styles['without-header']}></div>}
       <main>{children}</main>
       <Footer />
       <Toaster
