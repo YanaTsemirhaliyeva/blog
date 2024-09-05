@@ -1,0 +1,161 @@
+@import "../../sass/mixins.scss";
+@import "../../sass/variables.scss";
+
+
+
+.modal {
+  width: 100vw;
+  height: 100vh;
+  min-width: 430px;
+  background-color: $color-transparent-black;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1001;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: scale(0);
+  pointer-events: none;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  visibility: hidden;
+  opacity: 0;
+
+  @include vp-767 {
+    background-color: $color-default-black;
+  }
+
+  &--active {
+    transform: scale(1);
+    visibility: visible;
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  &__desktop {
+    max-width: 64.8%;
+    width: 100%;
+    height: 100%;
+    max-height: 66%;
+
+    @include vp-1023 {
+      max-width: 80%;
+    }
+  }
+
+  &__wrapper {
+    position: relative;
+    padding: 60px 24px;
+    border-radius: 24px;
+    background-color: $color-default-black;
+    height: 100%;
+
+    @include vp-767 {
+      width: 100%;
+      height: 100%;
+      padding: 0;
+      border-radius: 0;
+    }
+  }
+
+  &__content {
+    width: 100%;
+    height: 100%;
+
+    @include vp-767 {
+      width: 100%;
+      height: 100%;
+      padding: 0;
+      border-radius: 0;
+      display: flex;
+      flex-direction: column;
+    }
+  }
+
+  .btn {
+    position: absolute;
+    top: 32px;
+    right: 40px;
+    transition: transform $trans-default;
+    width: 24px;
+    height: 24px;
+    background-color: $color-default-black;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+
+    &:hover {
+      transform: scale(1.1);
+    }
+
+
+    @include vp-767 {
+      top: -20px;
+      right: 0;
+    }
+
+    &::after,
+    &::before {
+      content: "";
+      position: absolute;
+      width: 24px;
+      height: 2px;
+      top: 50%;
+      left: 0;
+      background-color: $color-default-white;
+      transform: rotate(45deg);
+      transition: transform $trans-default;
+
+      @include vp-767 {
+        width: 18px;
+        height: 1px;
+      }
+    }
+
+    &::after {
+      transform: rotate(-45deg);
+    }
+
+  }
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+  }
+
+  &__field {
+    margin-bottom: 20px;
+
+    textarea {
+      width: 100%;
+      padding: 12px 10px;
+      line-height: 28px;
+      font-size: 14px;
+    }
+
+    &--desc {
+
+      textarea {
+        width: 100%;
+        min-height: 200px;
+      }
+    }
+  }
+
+  &__title {
+    display: block;
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+
+  &__btn {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 10px
+  }
+}

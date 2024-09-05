@@ -1,0 +1,29 @@
+@import "../../sass/mixins.scss";
+@import "../../sass/variables.scss";
+
+
+.socials {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+
+  &__link {
+    position: relative;
+
+    &:hover {
+
+      .socials__icon {
+        transform: scale(1.1) translate(-50%, -50%);
+      }
+    }
+  }
+
+
+  &__icon {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    transition: transform $trans-default;
+  }
+}

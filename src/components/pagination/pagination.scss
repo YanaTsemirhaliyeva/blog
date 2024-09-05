@@ -1,0 +1,58 @@
+@import "../../sass/mixins.scss";
+@import "../../sass/variables.scss";
+
+
+.pagination {
+  max-width: 700px;
+  margin: 0 auto;
+
+  ul {
+    display: flex;
+    list-style: none;
+    gap: 4px;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 6px;
+
+    li {
+      cursor: pointer;
+      border-radius: 4px;
+
+      a {
+        padding: 2px 8px;
+        border-radius: 4px;
+        transition: color $trans-default, background-color $trans-default;
+
+        &:hover {
+          background-color: $color-transparent-3;
+          color: $color-default-black;
+        }
+      }
+    }
+
+    .selected {
+      pointer-events: none;
+
+      a {
+        background-color: $color-transparent-2;
+        color: $color-default-black;
+        pointer-events: none;
+      }
+    }
+
+    .break {
+      pointer-events: none;
+    }
+
+    .disabled {
+      pointer-events: none;
+
+      a {
+        color: $color-transparent-2;
+        opacity: 0.5
+      }
+    }
+  }
+}
+
+

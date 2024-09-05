@@ -1,0 +1,50 @@
+@import "../../sass/mixins.scss";
+@import "../../sass/variables.scss";
+
+
+.btn-transp {
+  padding: 9px 24px;
+  background-image: -o-radial-gradient(100% 100%,circle,transparent 0,#0db9f0 0,#0db9f0 1px,transparent 1px),-o-linear-gradient(left,#0db9f0,#e85ce9),-o-radial-gradient(0 100%,circle,transparent 0,#e85ce9 0,#e85ce9 1px,transparent 1px),-o-linear-gradient(top,#e85ce9,#e95de9),-o-radial-gradient(0 0,circle,transparent 0,#e95de9 0,#e95de9 1px,transparent 1px),-o-linear-gradient(right,#e95de9,#0cb9f0),-o-radial-gradient(100% 0,circle,transparent 0,#0cb9f0 0,#0cb9f0 1px,transparent 1px),-o-linear-gradient(bottom,#0cb9f0,#0db9f0);
+  background-image: radial-gradient(circle at 100% 100%,transparent 0,#0db9f0 0,#0db9f0 1px,transparent 1px),linear-gradient(to right,#0db9f0,#e85ce9),radial-gradient(circle at 0 100%,transparent 0,#e85ce9 0,#e85ce9 1px,transparent 1px),linear-gradient(to bottom,#e85ce9,#e95de9),radial-gradient(circle at 0 0,transparent 0,#e95de9 0,#e95de9 1px,transparent 1px),linear-gradient(to left,#e95de9,#0cb9f0),radial-gradient(circle at 100% 0,transparent 0,#0cb9f0 0,#0cb9f0 1px,transparent 1px),linear-gradient(to top,#0cb9f0,#0db9f0);
+  background-size: 1px 1px,calc(100% - 2px) 1px,1px 1px,1px calc(100% - 2px);
+  background-position: top left,top center,top right,center right,bottom right,bottom center,bottom left,center left;
+  background-repeat: no-repeat;
+  position: relative;
+  -webkit-transition: all $trans-default;
+  -o-transition: all $trans-default;
+  transition: all $trans-default;
+  min-width: 126px;
+  text-wrap: nowrap;
+  text-transform: none;
+  text-align: center;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: -webkit-gradient(linear,left top,right top,from(#0cbaf1),to(#e95ce9));
+    background: -o-linear-gradient(left,#0cbaf1 0,#e95ce9 100%);
+    background: linear-gradient(90deg,#0cbaf1 0,#e95ce9 100%);
+    opacity: 0;
+    -webkit-transition: all $trans-default;
+    -o-transition: all $trans-default;
+    transition: all $trans-default;
+  }
+
+  &:hover {
+
+    &::before {
+      opacity: 1;
+    }
+  }
+
+  &__text {
+    position: relative;
+  }
+}
