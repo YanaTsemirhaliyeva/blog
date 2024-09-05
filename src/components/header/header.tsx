@@ -7,17 +7,20 @@ import { AppRoute } from '../../const';
 
 export default function Header() {
   const location = useLocation();
+  const isNeedHeader = location.pathname === AppRoute.Index || location.pathname === AppRoute.Blog
 
   return (
     <header className={styles.header}>
-      <div className={`${container.container} ${styles['header__flex']}`}>
-        <Socials />
-        <div>
-          {location.pathname === AppRoute.Blog &&
-            <BtnTransparent text='Create new post'/>
-          }
+      {isNeedHeader &&
+        <div className={`${container.container} ${styles['header__flex']}`}>
+          <Socials />
+          <div>
+            {location.pathname === AppRoute.Blog &&
+              <BtnTransparent text='Create new post'/>
+            }
+          </div>
         </div>
-      </div>
+      }
     </header>
   );
 }
