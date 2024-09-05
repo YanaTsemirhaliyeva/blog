@@ -10,5 +10,5 @@ const isProd = process.env.NODE_ENV === 'production';
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
-  base: isProd ? '/blog-test' : '',
+  base: '/blog-test',
 });
