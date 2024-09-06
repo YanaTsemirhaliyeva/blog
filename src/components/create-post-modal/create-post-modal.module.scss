@@ -41,6 +41,7 @@
 
     @include vp-1023 {
       max-width: 80%;
+      max-height: 100%;
     }
   }
 
@@ -53,7 +54,6 @@
 
     @include vp-767 {
       width: 100%;
-      height: 100%;
       padding: 0;
       border-radius: 0;
     }
@@ -64,12 +64,11 @@
     height: 100%;
 
     @include vp-767 {
-      width: 100%;
-      height: 100%;
       padding: 0;
       border-radius: 0;
       display: flex;
       flex-direction: column;
+      justify-content: center;
     }
   }
 
