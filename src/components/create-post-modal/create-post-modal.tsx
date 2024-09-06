@@ -14,7 +14,7 @@ export function CreatePost() {
   const { isModalActive, setIsModalActive, setCreateData } = usePostItem();
   const modalRef = useRef(null);
   const { lockScroll, unlockScroll } = useScrollLock();
-  const initialData = {title: '', body: ''}
+  const initialData = { title: '', body: '' }
   const [data, setData] = useState<PostUpdateData>(initialData)
   const [isChange, setIsChange] = useState<boolean>(false)
 
@@ -25,8 +25,8 @@ export function CreatePost() {
   }, [data])
 
   const handleChangeForm = (evt: ChangeEvent<HTMLTextAreaElement>): void => {
-    const {name, value} = evt.target;
-    setData({ ...data, [name]: value});
+    const { name, value } = evt.target;
+    setData({ ...data, [name]: value });
     if (!isChange) {
       setIsChange(true);
     }
@@ -71,7 +71,15 @@ export function CreatePost() {
               <form className={styles['modal__form']}>
                 <div className={styles['modal__field']}>
                   <label>
-                    <span className={styles['modal__title']}>Title</span>
+                    <div className={styles['modal__title-wrapper']}>
+                      <span className={styles['modal__title']}>Title</span>
+                      <button
+                        className={styles.btn}
+                        onClick={handleButtonClose}
+                      >
+                      </button>
+                    </div>
+
                     <textarea
                       placeholder="Title"
                       maxLength={100}
@@ -101,11 +109,6 @@ export function CreatePost() {
                 </div>
               </form>
             </div>
-            <button
-              className={styles.btn}
-              onClick={handleButtonClose}
-            >
-            </button>
           </div>
         </div>
       </div>
