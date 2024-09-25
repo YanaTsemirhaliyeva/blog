@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useEffect } from 'react';
 import { usePostItem } from '../../store/post-item';
 import Spinner from '../../components/spinner/spinner';
@@ -11,11 +11,13 @@ import BtnTransparent from '../../components/btn-transparent/btn-transparent';
 import { AppRoute, Method } from '../../const';
 import PostUpdate from '../../components/post-update/post-update';
 import LinkTransparent from '../../components/link-transparent/link-transparent';
+import toast from 'react-hot-toast';
 
 
 export default function PostScreen(): JSX.Element {
   const { postId } = useParams();
-  const { getPost, getPhoto, loading, post, photo, dropData, setCurrentId, method } = usePostItem()
+  const { getPost, getPhoto, loading, post, photo, dropData, setCurrentId, method, currentId, deletePost, setMethod } = usePostItem();
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (postId) {
@@ -38,15 +40,35 @@ export default function PostScreen(): JSX.Element {
     return <NotFoundScreen />;
   }
 
+  const handlePostUpdate = () => {
+    setMethod(Method.Update);
+  }
+
+  const handlePostDelete = async () => {
+    if (currentId) {
+      const response = await deletePost(currentId.toString());
+      if (response) {
+        toast.success('Successfully deleted');
+        navigate(AppRoute.Blog);
+      }
+    }
+  }
+
 
   return (
     <MemoLayout pageTitle={`${post.title}`}>
       <section className={container.container}>
         {method === Method.Read &&
           <div className={styles['post__btns']}>
-                        <LinkTransparent text={'Back'} href={AppRoute.Blog} />
-            <BtnTransparent text='Update'/>
-            <BtnTransparent text='Delete'/>
+            <LinkTransparent text={'Back'} href={AppRoute.Blog} />
+            <BtnTransparent
+              text='Update'
+              onClick={handlePostUpdate}
+            />
+            <BtnTransparent
+              text='Delete'
+              onClick={handlePostDelete}
+            />
           </div>
         }
         <div className={styles.post}>

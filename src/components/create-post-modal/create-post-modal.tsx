@@ -7,16 +7,20 @@ import { useScrollLock } from '../hook/use-scroll-lock';
 import { usePostItem } from '../../store/post-item';
 import BtnTransparent from '../btn-transparent/btn-transparent';
 import { PostUpdateData } from '../../types/post';
+import toast from 'react-hot-toast';
+import { AppRoute } from '../../const';
+import { useNavigate } from 'react-router-dom';
 
 
 
 export function CreatePost() {
-  const { isModalActive, setIsModalActive, setCreateData } = usePostItem();
+  const { isModalActive, setIsModalActive, setCreateData, createData, createPost } = usePostItem();
   const modalRef = useRef(null);
   const { lockScroll, unlockScroll } = useScrollLock();
-  const initialData = { title: '', body: '' }
-  const [data, setData] = useState<PostUpdateData>(initialData)
-  const [isChange, setIsChange] = useState<boolean>(false)
+  const initialData = { title: '', body: '' };
+  const [data, setData] = useState<PostUpdateData>(initialData);
+  const [isChange, setIsChange] = useState<boolean>(false);
+  const navigate = useNavigate();
 
   const disabled = data.body === '' || data.title === '';
 
@@ -53,6 +57,23 @@ export function CreatePost() {
       document.removeEventListener('keydown', handleEscapeKeydown);
     };
   }, [isModalActive, handleEscapeKeydown, lockScroll, unlockScroll]);
+
+
+  const handlePostCreate = async () => {
+    if (createData) {
+      const response = await createPost(
+        {title: createData.title, body: createData.body, userId: 1}
+      );
+      if (response) {
+        toast.success('Successfully created');
+        navigate(AppRoute.Blog);
+        setIsModalActive(false);
+      }
+      if (!response) {
+        toast.error('Something went wrong, please try again');
+      }
+    }
+  }
 
 
   return (
@@ -105,6 +126,7 @@ export function CreatePost() {
                   <BtnTransparent
                     text='Create'
                     disabled={disabled}
+                    onClick={handlePostCreate}
                   />
                 </div>
               </form>
