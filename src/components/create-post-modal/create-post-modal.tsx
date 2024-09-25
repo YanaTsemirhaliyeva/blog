@@ -97,6 +97,7 @@ export function CreatePost() {
                       <button
                         className={styles.btn}
                         onClick={handleButtonClose}
+                        type='button'
                       >
                       </button>
                     </div>
